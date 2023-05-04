@@ -6,28 +6,31 @@
 #    By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 17:09:03 by mlongo            #+#    #+#              #
-#    Updated: 2023/04/28 17:43:29 by mlongo           ###   ########.fr        #
+#    Updated: 2023/05/04 17:28:00 by mlongo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := so_long
 
-SRCS_DIR := ./
+OBJS := main.o
 
-OBJS := test.o
+LIBFT_PATH = ./libft
+
+LIBFT = ${LIBFT_PATH}/libft.a
 
 FLAGS := -Wall -Werror -Wextra
 
 all: $(NAME)
 
 %.o : %.c
-	cc $(FLAGS) -Imlx -c $< -o $@
+	cc -Imlx -c $< -o $@
 
 $(NAME): $(OBJS)
-	cc $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	make -C libft
+	cc $(OBJS) ${LIBFT} -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
-	rm -f $(OBJS) ${B_OBJS}
+	rm -f $(OBJS) ${B_OBJS} $(LIBFT)
 
 fclean: clean
 	rm -f $(NAME)
