@@ -6,7 +6,7 @@
 /*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:01:30 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/05 11:12:18 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/05 13:47:59 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,12 @@
 
 typedef struct s_img
 {
-	void	*mlx_img;
+	void	*P;
+	void	*C;
+	void	*E;
+	void	*N;
+	void	*zero;
+	void	*one;
 	char	*addr;
 	int		bpp;
 	int		line_len;
