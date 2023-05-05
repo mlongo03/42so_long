@@ -6,13 +6,13 @@
 #    By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 17:09:03 by mlongo            #+#    #+#              #
-#    Updated: 2023/05/04 17:28:00 by mlongo           ###   ########.fr        #
+#    Updated: 2023/05/05 11:07:21 by mlongo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := so_long
 
-OBJS := main.o
+OBJS := main.o mapcheck.o
 
 LIBFT_PATH = ./libft
 
