@@ -6,13 +6,13 @@
 #    By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 17:09:03 by mlongo            #+#    #+#              #
-#    Updated: 2023/05/05 11:07:21 by mlongo           ###   ########.fr        #
+#    Updated: 2023/05/08 18:46:12 by mlongo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := so_long
 
-OBJS := main.o mapcheck.o
+OBJS := main.o mapcheck.o render_map.o handle_hooks.o update_player.o
 
 LIBFT_PATH = ./libft
 

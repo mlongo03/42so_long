@@ -6,7 +6,7 @@
 /*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:01:38 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/05 11:12:11 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/08 17:35:40 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 void	error()
 {
 	printf("Errore\nla mappa é sbagliata");
+	exit (1);
+}
+
+void	error_name_map()
+{
+	printf("Errore\nil nome della mappa é sbagliato");
 	exit (1);
 }
 
@@ -43,32 +49,30 @@ int	get_data_row_map(t_map *datamap, char *str)
 	return (i);
 }
 
-t_map	check_map(char **map)
+void	check_map(t_data *data)
 {
 	t_map	datamap;
 	int		i;
-	int		widht;
 
 	i = 0;
-	widht = 0;
-	datamap.E = 0;
-	datamap.P = 0;
-	datamap.C = 0;
-
-	widht = get_data_row_map(&datamap, map[i]);
-	if (widht != datamap.one)
+	data->datamap.widht = get_data_row_map(&data->datamap, data->datamap.splitmap[i]);
+	if (data->datamap.widht != data->datamap.one)
 		error();
-	datamap.widht = widht;
 	i++;
-	while (map[i])
+	while (data->datamap.splitmap[i])
 	{
-		if (widht != get_data_row_map(&datamap, map[i++]))
+		if (data->datamap.widht != get_data_row_map(&data->datamap, data->datamap.splitmap[i++]))
 			error();
 	}
-	if (widht != datamap.one)
+	if (data->datamap.widht != data->datamap.one)
 		error();
-	if (i == widht || (datamap.C == 0 || datamap.P == 0 || datamap.E == 0))
+	if (i == data->datamap.widht || (data->datamap.C == 0 || data->datamap.P == 0 || data->datamap.E == 0))
 		error();
-	datamap.height = i;
-	return (datamap);
+	data->datamap.height = i;
+}
+
+void	check_map_name(char *str, int ret)
+{
+	if (ft_strnstr(str, "maps/", 5) == 0 || ret == -1)
+		error_name_map();
 }

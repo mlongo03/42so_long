@@ -6,7 +6,7 @@
 /*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:01:30 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/05 13:47:59 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/08 19:10:50 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,22 @@
 # define RED_PIXEL 0xFF0000
 # define WHITE_PIXEL 0xFFFFFF
 
+typedef struct s_map
+{
+	int 	E;
+	int 	P;
+	int 	C;
+	int 	one;
+	int 	widht;
+	int 	height;
+	char	**splitmap;
+	int		ROWP;
+	int		COLUMNP;
+	int		mosse;
+	int		COLUMNE;
+	int		ROWE;
+}	t_map;
+
 typedef struct s_img
 {
 	void	*P;
@@ -35,10 +51,6 @@ typedef struct s_img
 	void	*N;
 	void	*zero;
 	void	*one;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
 }	t_img;
 
 typedef struct s_data
@@ -46,28 +58,19 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
+	t_map	datamap;
 }	t_data;
 
-typedef struct s_rect
-{
-	int	x;
-	int	y;
-	int width;
-	int height;
-	int color;
-}	t_rect;
-
-typedef struct s_map
-{
-	int E;
-	int P;
-	int C;
-	int one;
-	int widht;
-	int height;
-}	t_map;
-
 int		get_data_row_map(t_map *datamap, char *str);
-t_map	check_map(char **map);
+void	check_map(t_data *data);
+void	check_map_name(char *str, int ret);
+int		key_hook(int keycode, t_data *data);
+void	render_map(t_data *data);
+void	create_map(t_data *data);
+int		close_window(t_data *data);
+void	update_playerup(t_data *data);
+void	update_playerdown(t_data *data);
+void	update_playerright(t_data *data);
+void	update_playerleft(t_data *data);
 
 #endif
