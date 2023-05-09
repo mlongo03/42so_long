@@ -6,7 +6,7 @@
 /*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:01:30 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/09 11:13:42 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/09 15:00:37 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void	update_playerup(t_data *data);
 void	update_playerdown(t_data *data);
 void	update_playerright(t_data *data);
 void	update_playerleft(t_data *data);
+void	sprite_animation(t_data data);
 
 #endif

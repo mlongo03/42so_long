@@ -6,7 +6,7 @@
 /*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:01:38 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/08 17:35:40 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/09 14:36:13 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,19 @@ int	get_data_row_map(t_map *datamap, char *str)
 		if (str[i] == '1')
 			datamap->one += 1;
 		else if (str[i] == 'P')
+		{
+			if (datamap->P >= 1)
+				str[i] = '0';
 			datamap->P += 1;
+		}
 		else if (str[i] == 'C')
 			datamap->C += 1;
 		else if (str[i] == 'E')
+		{
+			if (datamap->E >= 1)
+				str[i] = '0';
 			datamap->E += 1;
+		}
 		else if (str[i] != '0' && str[i] != 'N')
 			error();
 		i++;
@@ -73,6 +81,8 @@ void	check_map(t_data *data)
 
 void	check_map_name(char *str, int ret)
 {
-	if (ft_strnstr(str, "maps/", 5) == 0 || ret == -1)
+	if (ft_strnstr(str, "maps/", 5) == 0 || ret == -1
+	|| str[ft_strlen(str) - 1] != 'r' || str[ft_strlen(str) - 2] != 'e'
+	|| str[ft_strlen(str) - 3] != 'b' || str[ft_strlen(str) - 4] != '.')
 		error_name_map();
 }

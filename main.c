@@ -6,7 +6,7 @@
 /*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:59:34 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/09 11:14:39 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/09 14:57:29 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int	main(int argc, char **argv)
 	check_map(&data);
 	render_map(&data);
 	mlx_key_hook(data.win_ptr, key_hook, &data);
-	// mlx_loop_hook(data.mlx_ptr, sprite_animation, &data);
+	mlx_loop_hook(data.mlx_ptr, sprite_animation, &data);
 	mlx_loop(data.mlx_ptr);
 }
