@@ -6,13 +6,17 @@
 /*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 14:58:36 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/09 15:00:10 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/09 15:45:53 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	sprite_animation(t_data data)
-{
+// void	sprite_animation(t_data data)
+// {
+// 	int FRAME;
 
-}
+// 	FRAME = 0;
+// 	if (FRAME <= 15)
+
+// }
