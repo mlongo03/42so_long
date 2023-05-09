@@ -6,7 +6,7 @@
 /*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:01:30 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/08 19:10:50 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/09 11:13:42 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_map
 	int		mosse;
 	int		COLUMNE;
 	int		ROWE;
+	int		widhtblock;
+	int		heightblock;
 }	t_map;
 
 typedef struct s_img

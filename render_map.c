@@ -6,7 +6,7 @@
 /*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:36:39 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/08 19:29:39 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/09 11:16:08 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ void	render_map(t_data *data)
 	heightblock = 64;
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, (data->datamap.widht * 64), (data->datamap.height * 64), "so_long");
-	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio.xpm", &widhtblock, &heightblock);
-	data->img.C = mlx_xpm_file_to_image(data->mlx_ptr, "./images/upallon.xpm", &widhtblock, &heightblock);
-	data->img.E = mlx_xpm_file_to_image(data->mlx_ptr, "./images/scudetto.xpm", &widhtblock, &heightblock);
-	data->img.N = mlx_xpm_file_to_image(data->mlx_ptr, "./images/arbitro.xpm", &widhtblock, &heightblock);
-	data->img.zero = mlx_xpm_file_to_image(data->mlx_ptr, "./images/background.xpm", &widhtblock, &heightblock);
-	data->img.one = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Wall.xpm", &widhtblock, &heightblock);
-	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio.xpm", &widhtblock, &heightblock);
+	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
+	data->img.C = mlx_xpm_file_to_image(data->mlx_ptr, "./images/upallon.xpm",  &data->datamap.widhtblock, &data->datamap.heightblock);
+	data->img.E = mlx_xpm_file_to_image(data->mlx_ptr, "./images/scudetto.xpm",  &data->datamap.widhtblock, &data->datamap.heightblock);
+	data->img.N = mlx_xpm_file_to_image(data->mlx_ptr, "./images/arbitro.xpm",  &data->datamap.widhtblock, &data->datamap.heightblock);
+	data->img.zero = mlx_xpm_file_to_image(data->mlx_ptr, "./images/background.xpm",  &data->datamap.widhtblock, &data->datamap.heightblock);
+	data->img.one = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Wall.xpm",  &data->datamap.widhtblock, &data->datamap.heightblock);
+	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio.xpm",  &data->datamap.widhtblock, &data->datamap.heightblock);
 	mlx_hook(data->win_ptr, 17, 0, close_window, data);
 	create_map(data);
 }

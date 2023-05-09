@@ -6,7 +6,7 @@
 /*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:40:58 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/08 19:29:09 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/09 11:18:28 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	game_win()
 
 void	update_playerup(t_data *data)
 {
+	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggioalto.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
 	if (data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] == 'E')
 	{
 		data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] = 'P';
@@ -60,6 +61,7 @@ void	update_playerup(t_data *data)
 
 void	update_playerdown(t_data *data)
 {
+	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggiogiu.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
 	if (data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] == 'E')
 	{
 		data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] = 'P';
@@ -94,6 +96,7 @@ void	update_playerdown(t_data *data)
 
 void	update_playerright(t_data *data)
 {
+	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
 	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] == 'E')
 	{
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] = 'P';
@@ -128,6 +131,7 @@ void	update_playerright(t_data *data)
 
 void	update_playerleft(t_data *data)
 {
+	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggiosinistra.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
 	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] == 'E')
 	{
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] = 'P';
