@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alessiolongo <alessiolongo@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:59:34 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/09 15:46:03 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/09 22:34:15 by alessiolong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 		printf("Error\ninserire una mappa");
 		exit (1);
 	}
+	data.img.FRAME = -1;
 	data.datamap.widhtblock = 64;
 	data.datamap.heightblock = 64;
 	fd = open(argv[1], 0);
@@ -34,6 +35,6 @@ int	main(int argc, char **argv)
 	check_map(&data);
 	render_map(&data);
 	mlx_key_hook(data.win_ptr, key_hook, &data);
-	// mlx_loop_hook(data.mlx_ptr, sprite_animation, &data);
+	mlx_loop_hook(data.mlx_ptr, sprite_animation, &data);
 	mlx_loop(data.mlx_ptr);
 }

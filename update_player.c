@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alessiolongo <alessiolongo@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:40:58 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/09 11:18:28 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/09 22:38:33 by alessiolong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	game_win()
 
 void	update_playerup(t_data *data)
 {
+	data->datamap.direction = 1;
 	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggioalto.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
 	if (data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] == 'E')
 	{
@@ -61,6 +62,7 @@ void	update_playerup(t_data *data)
 
 void	update_playerdown(t_data *data)
 {
+	data->datamap.direction = 2;
 	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggiogiu.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
 	if (data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] == 'E')
 	{
@@ -96,6 +98,7 @@ void	update_playerdown(t_data *data)
 
 void	update_playerright(t_data *data)
 {
+	data->datamap.direction = 3;
 	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
 	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] == 'E')
 	{
@@ -131,6 +134,7 @@ void	update_playerright(t_data *data)
 
 void	update_playerleft(t_data *data)
 {
+	data->datamap.direction = 4;
 	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggiosinistra.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
 	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] == 'E')
 	{

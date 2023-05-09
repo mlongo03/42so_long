@@ -3,29 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alessiolongo <alessiolongo@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:01:30 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/09 15:46:07 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/09 22:37:11 by alessiolong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 #define SO_LONG_H
 
-# include "/Users/mlongo/Desktop/libft/libft.h"
+# include "./libft/libft.h"
 # include <stdlib.h>
 # include <stdio.h>
-# include <mlx.h>
+// # include <mlx.h>
+# include "./minilibx_opengl_20191021/mlx.h"
 # include <unistd.h>
 # include <fcntl.h>
-
-# define WINDOW_WIDTH 600
-# define WINDOW_HEIGHT 300
-# define MLX_ERROR 1
-# define GREEN_PIXEL 0xFF00
-# define RED_PIXEL 0xFF0000
-# define WHITE_PIXEL 0xFFFFFF
 
 typedef struct s_map
 {
@@ -43,10 +37,12 @@ typedef struct s_map
 	int		ROWE;
 	int		widhtblock;
 	int		heightblock;
+	int		direction; //1 = up, 2 = down, 3 = right, 4 = left
 }	t_map;
 
 typedef struct s_img
 {
+	int		FRAME;
 	void	*P;
 	void	*C;
 	void	*E;
@@ -74,6 +70,6 @@ void	update_playerup(t_data *data);
 void	update_playerdown(t_data *data);
 void	update_playerright(t_data *data);
 void	update_playerleft(t_data *data);
-// void	sprite_animation(t_data data);
+int		sprite_animation(t_data *data);
 
 #endif
