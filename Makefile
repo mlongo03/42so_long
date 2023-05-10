@@ -6,13 +6,13 @@
 #    By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 17:09:03 by mlongo            #+#    #+#              #
-#    Updated: 2023/05/10 11:32:34 by mlongo           ###   ########.fr        #
+#    Updated: 2023/05/10 12:42:40 by mlongo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := so_long
 
-OBJS := main.o mapcheck.o render_map.o handle_hooks.o update_player.o animation.o
+OBJS := main.o mapcheck.o render_map.o handle_hooks.o update_player.o animation.o error.o
 
 LIBFT_PATH = ./libft
 
@@ -27,7 +27,7 @@ FLAGS := -Wall -Werror -Wextra
 all: $(NAME)
 
 %.o : %.c
-	cc -Imlx -c $< -o $@
+	cc $(FLAGS) -Imlx -c $< -o $@
 
 $(NAME): $(OBJS)
 	make -C libft

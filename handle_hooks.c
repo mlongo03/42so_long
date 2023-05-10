@@ -6,7 +6,7 @@
 /*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 11:42:43 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/09 14:38:56 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/10 11:51:21 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	key_hook(int keycode, t_data *data)
 {
 	if (keycode == 53)
 		close_window(data);
-	if (keycode == 126 || keycode == 13) //up
+	if (keycode == 126 || keycode == 13)
 		update_playerup(data);
-	if (keycode == 125 || keycode == 1) //down
+	if (keycode == 125 || keycode == 1)
 		update_playerdown(data);
-	if (keycode == 124 || keycode == 2) //right
+	if (keycode == 124 || keycode == 2)
 		update_playerright(data);
-	if (keycode == 123 || keycode == 0) //left
+	if (keycode == 123 || keycode == 0)
 		update_playerleft(data);
 	return (0);
 }

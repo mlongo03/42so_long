@@ -6,7 +6,7 @@
 /*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 14:58:36 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/10 10:40:52 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/10 12:25:09 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,67 +14,84 @@
 
 void	animationright(t_data *data)
 {
-	data->img.FRAME += 1;
-	if (data->img.FRAME <= 10)
-		data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
-	if (data->img.FRAME > 10 && data->img.FRAME <= 20)
-		data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio2.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
-	if (data->img.FRAME > 20)
-		data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio3.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
-	if (data->img.FRAME > 30)
-		data->img.FRAME = -1;
+	data->img.frame += 1;
+	if (data->img.frame <= 10)
+		data->img.p = mlx_xpm_file_to_image(data->mlx_ptr, "./images/P.xpm",
+				&data->map.widhtblock, &data->map.heightblock);
+	if (data->img.frame > 10 && data->img.frame <= 20)
+		data->img.p = mlx_xpm_file_to_image(data->mlx_ptr, "./images/P2.xpm",
+				&data->map.widhtblock, &data->map.heightblock);
+	if (data->img.frame > 20)
+		data->img.p = mlx_xpm_file_to_image(data->mlx_ptr, "./images/P3.xpm",
+				&data->map.widhtblock, &data->map.heightblock);
+	if (data->img.frame > 30)
+		data->img.frame = -1;
 	create_map(data);
 }
 
 void	animationleft(t_data *data)
 {
-	data->img.FRAME += 1;
-	if (data->img.FRAME <= 10)
-		data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggiosinistra.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
-	if (data->img.FRAME > 10 && data->img.FRAME <= 20)
-		data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio2sinistra.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
-	if (data->img.FRAME > 20)
-		data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio3sinistra.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
-	if (data->img.FRAME > 30)
-		data->img.FRAME = -1;
+	data->img.frame += 1;
+	if (data->img.frame <= 10)
+		data->img.p = mlx_xpm_file_to_image(data->mlx_ptr,
+				"./images/Psinistra.xpm",
+				&data->map.widhtblock, &data->map.heightblock);
+	if (data->img.frame > 10 && data->img.frame <= 20)
+		data->img.p = mlx_xpm_file_to_image(data->mlx_ptr,
+				"./images/P2sinistra.xpm", &data->map.widhtblock,
+				&data->map.heightblock);
+	if (data->img.frame > 20)
+		data->img.p = mlx_xpm_file_to_image(data->mlx_ptr,
+				"./images/P3sinistra.xpm", &data->map.widhtblock,
+				&data->map.heightblock);
+	if (data->img.frame > 30)
+		data->img.frame = -1;
 	create_map(data);
 }
 
 void	animationup(t_data *data)
 {
-	data->img.FRAME += 1;
-	if (data->img.FRAME <= 10)
-		data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggioalto.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
-	if (data->img.FRAME > 10 && data->img.FRAME <= 20)
-		data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio2alto.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
-	if (data->img.FRAME > 20)
-		data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio3alto.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
-	if (data->img.FRAME > 30)
-		data->img.FRAME = -1;
+	data->img.frame += 1;
+	if (data->img.frame <= 10)
+		data->img.p = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Palto.xpm",
+				&data->map.widhtblock, &data->map.heightblock);
+	if (data->img.frame > 10 && data->img.frame <= 20)
+		data->img.p = mlx_xpm_file_to_image(data->mlx_ptr,
+				"./images/P2alto.xpm", &data->map.widhtblock,
+				&data->map.heightblock);
+	if (data->img.frame > 20)
+		data->img.p = mlx_xpm_file_to_image(data->mlx_ptr,
+				"./images/P3alto.xpm", &data->map.widhtblock,
+				&data->map.heightblock);
+	if (data->img.frame > 30)
+		data->img.frame = -1;
 	create_map(data);
 }
 
 void	animationdown(t_data *data)
 {
-	data->img.FRAME += 1;
-	if (data->img.FRAME <= 10)
-		data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggiogiu.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
-	if (data->img.FRAME > 10 && data->img.FRAME <= 20)
-		data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio2giu.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
-	if (data->img.FRAME > 20)
-		data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio3giu.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
-	if (data->img.FRAME > 30)
-		data->img.FRAME = -1;
+	data->img.frame += 1;
+	if (data->img.frame <= 10)
+		data->img.p = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Pgiu.xpm",
+				&data->map.widhtblock, &data->map.heightblock);
+	if (data->img.frame > 10 && data->img.frame <= 20)
+		data->img.p = mlx_xpm_file_to_image(data->mlx_ptr, "./images/P2giu.xpm",
+				&data->map.widhtblock, &data->map.heightblock);
+	if (data->img.frame > 20)
+		data->img.p = mlx_xpm_file_to_image(data->mlx_ptr, "./images/P3giu.xpm",
+				&data->map.widhtblock, &data->map.heightblock);
+	if (data->img.frame > 30)
+		data->img.frame = -1;
 	create_map(data);
 }
 
 int	sprite_animation(t_data *data)
 {
-	if (data->datamap.direction == 2)
+	if (data->map.direction == 2)
 		animationdown(data);
-	else if (data->datamap.direction == 1)
+	else if (data->map.direction == 1)
 		animationup(data);
-	else if (data->datamap.direction == 4)
+	else if (data->map.direction == 4)
 		animationleft(data);
 	else
 		animationright(data);
