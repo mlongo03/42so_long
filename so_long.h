@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessiolongo <alessiolongo@student.42.f    +#+  +:+       +#+        */
+/*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:01:30 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/09 22:37:11 by alessiolong      ###   ########.fr       */
+/*   Updated: 2023/05/10 11:31:39 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 #define SO_LONG_H
 
 # include "./libft/libft.h"
+# include "./ft_printf/ft_printf.h"
 # include <stdlib.h>
 # include <stdio.h>
-// # include <mlx.h>
-# include "./minilibx_opengl_20191021/mlx.h"
+# include <mlx.h>
+// # include "./minilibx_opengl_20191021/mlx.h"
 # include <unistd.h>
 # include <fcntl.h>
 

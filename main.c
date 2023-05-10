@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessiolongo <alessiolongo@student.42.f    +#+  +:+       +#+        */
+/*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:59:34 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/09 22:34:15 by alessiolong      ###   ########.fr       */
+/*   Updated: 2023/05/10 11:17:24 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		printf("Error\ninserire una mappa");
+		ft_printf("Error\ninserire una mappa");
 		exit (1);
 	}
 	data.img.FRAME = -1;

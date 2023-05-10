@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapcheck.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessiolongo <alessiolongo@student.42.f    +#+  +:+       +#+        */
+/*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:01:38 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/09 22:24:24 by alessiolong      ###   ########.fr       */
+/*   Updated: 2023/05/10 11:17:24 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	error()
 {
-	printf("Errore\nla mappa é sbagliata");
+	ft_printf("Errore\nla mappa é sbagliata");
 	exit (1);
 }
 
 void	error_name_map()
 {
-	printf("Errore\nil nome della mappa é sbagliato");
+	ft_printf("Errore\nil nome della mappa é sbagliato");
 	exit (1);
 }
 

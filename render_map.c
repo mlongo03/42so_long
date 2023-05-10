@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessiolongo <alessiolongo@student.42.f    +#+  +:+       +#+        */
+/*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:36:39 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/09 22:27:11 by alessiolong      ###   ########.fr       */
+/*   Updated: 2023/05/10 10:58:59 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	create_map(t_data *data)
 		y += 64;
 		i++;
 	}
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 0, 0, 0xFFFFFF, "MOSSE : ");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 80, 0, 0xFFFFFF, ft_itoa(data->datamap.mosse));
 }
 
 void	render_map(t_data *data)

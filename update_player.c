@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessiolongo <alessiolongo@student.42.f    +#+  +:+       +#+        */
+/*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:40:58 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/09 22:38:33 by alessiolong      ###   ########.fr       */
+/*   Updated: 2023/05/10 11:17:24 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	game_over()
 {
-	printf("GAME OVER\nhai perso il campionato");
+	ft_printf("GAME OVER\nhai perso il campionato");
 	exit (1);
 }
 
 void	game_win()
 {
-	printf("GAME WIN\nhai vinto il campionato");
+	ft_printf("GAME WIN\nhai vinto il campionato");
 	exit (1);
 }
 
@@ -33,7 +33,7 @@ void	update_playerup(t_data *data)
 		data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] = 'P';
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
 		data->datamap.mosse += 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
+		ft_printf("MOSSE :%d\n", data->datamap.mosse);
 		if (data->datamap.C == 0)
 			game_win();
 	}
@@ -42,7 +42,7 @@ void	update_playerup(t_data *data)
 		data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] = 'P';
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
 		data->datamap.mosse += 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
+		ft_printf("MOSSE :%d\n", data->datamap.mosse);
 	}
 	if (data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] == 'C')
 	{
@@ -50,7 +50,8 @@ void	update_playerup(t_data *data)
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
 		data->datamap.mosse += 1;
 		data->datamap.C -= 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
+		ft_printf("MOSSE :%d\n", data->datamap.mosse);
+		mlx_string_put(data->mlx_ptr, data->win_ptr, 0, 0, 0xFFFFFF, "MOSSE : ");
 	}
 	if (data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] == 'N')
 	{
@@ -69,7 +70,7 @@ void	update_playerdown(t_data *data)
 		data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] = 'P';
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
 		data->datamap.mosse += 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
+		ft_printf("MOSSE :%d\n", data->datamap.mosse);
 		if (data->datamap.C == 0)
 			game_win();
 	}
@@ -78,7 +79,7 @@ void	update_playerdown(t_data *data)
 		data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] = 'P';
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
 		data->datamap.mosse += 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
+		ft_printf("MOSSE :%d\n", data->datamap.mosse);
 	}
 	if (data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] == 'C')
 	{
@@ -86,7 +87,7 @@ void	update_playerdown(t_data *data)
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
 		data->datamap.mosse += 1;
 		data->datamap.C -= 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
+		ft_printf("MOSSE :%d\n", data->datamap.mosse);
 	}
 	if (data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] == 'N')
 	{
@@ -105,7 +106,7 @@ void	update_playerright(t_data *data)
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] = 'P';
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
 		data->datamap.mosse += 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
+		ft_printf("MOSSE :%d\n", data->datamap.mosse);
 		if (data->datamap.C == 0)
 			game_win();
 	}
@@ -114,7 +115,7 @@ void	update_playerright(t_data *data)
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] = 'P';
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
 		data->datamap.mosse += 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
+		ft_printf("MOSSE :%d\n", data->datamap.mosse);
 	}
 	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] == 'C')
 	{
@@ -122,7 +123,7 @@ void	update_playerright(t_data *data)
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
 		data->datamap.mosse += 1;
 		data->datamap.C -= 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
+		ft_printf("MOSSE :%d\n", data->datamap.mosse);
 	}
 	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] == 'N')
 	{
@@ -141,7 +142,7 @@ void	update_playerleft(t_data *data)
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] = 'P';
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
 		data->datamap.mosse += 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
+		ft_printf("MOSSE :%d\n", data->datamap.mosse);
 		if (data->datamap.C == 0)
 			game_win();
 	}
@@ -149,7 +150,8 @@ void	update_playerleft(t_data *data)
 	{
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] = 'P';
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
-		printf("MOSSE :%d\n", data->datamap.mosse);
+		data->datamap.mosse += 1;
+		ft_printf("MOSSE :%d\n", data->datamap.mosse);
 	}
 	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] == 'C')
 	{
@@ -157,7 +159,7 @@ void	update_playerleft(t_data *data)
 		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
 		data->datamap.mosse += 1;
 		data->datamap.C -= 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
+		ft_printf("MOSSE :%d\n", data->datamap.mosse);
 	}
 	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] == 'N')
 	{
