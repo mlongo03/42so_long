@@ -6,158 +6,68 @@
 /*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:40:58 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/09 11:18:28 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/11 11:01:46 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	game_over()
+void	game_over(void)
 {
-	printf("GAME OVER\nhai perso il campionato");
+	ft_printf("GAME OVER\nhai perso il campionato");
 	exit (1);
 }
 
-void	game_win()
+void	game_win(void)
 {
-	printf("GAME WIN\nhai vinto il campionato");
+	ft_printf("GAME WIN\nhai vinto il campionato");
 	exit (1);
 }
 
-void	update_playerup(t_data *data)
+void	update_player(t_data *data, int x, int y)
 {
-	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggioalto.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
-	if (data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] == 'E')
+	if (x == -1)
+		data->map.direction = 1;
+	if (x == 1)
+		data->map.direction = 2;
+	if (y == -1)
+		data->map.direction = 4;
+	if (y == 1)
+		data->map.direction = 3;
+	if (data->map.splitmap[data->map.rp + x][data->map.cp + y] == 'E')
 	{
-		data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] = 'P';
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
-		data->datamap.mosse += 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
-		if (data->datamap.C == 0)
+		data->map.splitmap[data->map.rp + x][data->map.cp + y] = 'P';
+		data->map.splitmap[data->map.rp][data->map.cp] = '0';
+		data->map.mosse += 1;
+		ft_printf("MOSSE :%d\n", data->map.mosse);
+		if (data->map.c == 0)
 			game_win();
 	}
-	if (data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] == '0')
+	if (data->map.splitmap[data->map.rp + x][data->map.cp + y] == '0')
 	{
-		data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] = 'P';
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
-		data->datamap.mosse += 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
+		data->map.splitmap[data->map.rp + x][data->map.cp + y] = 'P';
+		data->map.splitmap[data->map.rp][data->map.cp] = '0';
+		data->map.mosse += 1;
+		ft_printf("MOSSE :%d\n", data->map.mosse);
 	}
-	if (data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] == 'C')
-	{
-		data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] = 'P';
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
-		data->datamap.mosse += 1;
-		data->datamap.C -= 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
-	}
-	if (data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] == 'N')
-	{
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
-		game_over();
-	}
-	create_map(data);
+	update_player2(data, x, y);
 }
 
-void	update_playerdown(t_data *data)
+void	update_player2(t_data *data, int x, int y)
 {
-	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggiogiu.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
-	if (data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] == 'E')
+	if (data->map.splitmap[data->map.rp + x][data->map.cp + y] == 'C')
 	{
-		data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] = 'P';
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
-		data->datamap.mosse += 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
-		if (data->datamap.C == 0)
-			game_win();
+		data->map.splitmap[data->map.rp + x][data->map.cp + y] = 'P';
+		data->map.splitmap[data->map.rp][data->map.cp] = '0';
+		data->map.mosse += 1;
+		data->map.c -= 1;
+		ft_printf("MOSSE :%d\n", data->map.mosse);
+		mlx_string_put(data->mlx_ptr, data->win_ptr, 0, 0,
+			0xFFFFFF, "MOSSE : ");
 	}
-	if (data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] == '0')
+	if (data->map.splitmap[data->map.rp - 1][data->map.cp] == 'N')
 	{
-		data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] = 'P';
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
-		data->datamap.mosse += 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
-	}
-	if (data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] == 'C')
-	{
-		data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] = 'P';
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
-		data->datamap.mosse += 1;
-		data->datamap.C -= 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
-	}
-	if (data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] == 'N')
-	{
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
-		game_over();
-	}
-	create_map(data);
-}
-
-void	update_playerright(t_data *data)
-{
-	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
-	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] == 'E')
-	{
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] = 'P';
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
-		data->datamap.mosse += 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
-		if (data->datamap.C == 0)
-			game_win();
-	}
-	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] == '0')
-	{
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] = 'P';
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
-		data->datamap.mosse += 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
-	}
-	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] == 'C')
-	{
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] = 'P';
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
-		data->datamap.mosse += 1;
-		data->datamap.C -= 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
-	}
-	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] == 'N')
-	{
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
-		game_over();
-	}
-	create_map(data);
-}
-
-void	update_playerleft(t_data *data)
-{
-	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggiosinistra.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
-	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] == 'E')
-	{
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] = 'P';
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
-		data->datamap.mosse += 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
-		if (data->datamap.C == 0)
-			game_win();
-	}
-	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] == '0')
-	{
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] = 'P';
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
-		printf("MOSSE :%d\n", data->datamap.mosse);
-	}
-	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] == 'C')
-	{
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] = 'P';
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
-		data->datamap.mosse += 1;
-		data->datamap.C -= 1;
-		printf("MOSSE :%d\n", data->datamap.mosse);
-	}
-	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] == 'N')
-	{
-		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
+		data->map.splitmap[data->map.rp][data->map.cp] = '0';
 		game_over();
 	}
 	create_map(data);

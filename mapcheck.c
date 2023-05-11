@@ -6,49 +6,43 @@
 /*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:01:38 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/09 14:36:13 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/11 11:20:01 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	error()
+int	get_data_row_map(t_map *map, char *str)
 {
-	printf("Errore\nla mappa é sbagliata");
-	exit (1);
-}
-
-void	error_name_map()
-{
-	printf("Errore\nil nome della mappa é sbagliato");
-	exit (1);
-}
-
-int	get_data_row_map(t_map *datamap, char *str)
-{
-	int i;
+	int	i;
 
 	i = 0;
-	datamap->one = 0;
+	map->one = 0;
 	if (str[0] != '1' || str[ft_strlen(str) - 1] != '1')
 		error();
+	i = get_data_row_map2(map, str, i);
+	return (i);
+}
+
+int	get_data_row_map2(t_map *map, char *str, int i)
+{
 	while (str[i])
 	{
 		if (str[i] == '1')
-			datamap->one += 1;
+			map->one += 1;
 		else if (str[i] == 'P')
 		{
-			if (datamap->P >= 1)
+			if (map->p >= 1)
 				str[i] = '0';
-			datamap->P += 1;
+			map->p += 1;
 		}
 		else if (str[i] == 'C')
-			datamap->C += 1;
+			map->c += 1;
 		else if (str[i] == 'E')
 		{
-			if (datamap->E >= 1)
+			if (map->e >= 1)
 				str[i] = '0';
-			datamap->E += 1;
+			map->e += 1;
 		}
 		else if (str[i] != '0' && str[i] != 'N')
 			error();
@@ -59,30 +53,32 @@ int	get_data_row_map(t_map *datamap, char *str)
 
 void	check_map(t_data *data)
 {
-	t_map	datamap;
 	int		i;
 
 	i = 0;
-	data->datamap.widht = get_data_row_map(&data->datamap, data->datamap.splitmap[i]);
-	if (data->datamap.widht != data->datamap.one)
+	data->map.widht = get_data_row_map(&data->map,
+			data->map.splitmap[i]);
+	if (data->map.widht != data->map.one)
 		error();
 	i++;
-	while (data->datamap.splitmap[i])
+	while (data->map.splitmap[i])
 	{
-		if (data->datamap.widht != get_data_row_map(&data->datamap, data->datamap.splitmap[i++]))
+		if (data->map.widht != get_data_row_map(&data->map,
+				data->map.splitmap[i++]))
 			error();
 	}
-	if (data->datamap.widht != data->datamap.one)
+	if (data->map.widht != data->map.one)
 		error();
-	if (i == data->datamap.widht || (data->datamap.C == 0 || data->datamap.P == 0 || data->datamap.E == 0))
+	if (i == data->map.widht || (data->map.c == 0
+			|| data->map.p == 0 || data->map.e == 0))
 		error();
-	data->datamap.height = i;
+	data->map.height = i;
 }
 
 void	check_map_name(char *str, int ret)
 {
-	if (ft_strnstr(str, "maps/", 5) == 0 || ret == -1
-	|| str[ft_strlen(str) - 1] != 'r' || str[ft_strlen(str) - 2] != 'e'
-	|| str[ft_strlen(str) - 3] != 'b' || str[ft_strlen(str) - 4] != '.')
+	if (ft_strnstr(str, "maps/", 5) == 0 || ret == -1 || ret == 0
+		|| str[ft_strlen(str) - 1] != 'r' || str[ft_strlen(str) - 2] != 'e'
+		|| str[ft_strlen(str) - 3] != 'b' || str[ft_strlen(str) - 4] != '.')
 		error_name_map();
 }
