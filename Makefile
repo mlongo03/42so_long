@@ -6,7 +6,7 @@
 #    By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 17:09:03 by mlongo            #+#    #+#              #
-#    Updated: 2023/05/11 11:24:33 by mlongo           ###   ########.fr        #
+#    Updated: 2023/05/11 11:40:25 by mlongo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,6 @@ FT_PRINTF = ${FT_PRINTF_PATH}/libftprintf.a
 
 FLAGS := -Wall -Werror -Wextra
 
-MAKEFILE += --silent
-
 all: $(NAME)
 
 %.o : %.c
@@ -35,7 +33,6 @@ $(NAME): $(OBJS)
 	make -C libft
 	make -C ft_printf
 	cc $(OBJS) ${LIBFT} $(FT_PRINTF) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-	@echo compiled OK!
 
 clean:
 	make clean -C libft
