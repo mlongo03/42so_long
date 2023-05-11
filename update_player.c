@@ -6,180 +6,159 @@
 /*   By: mlongo <mlongo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:40:58 by mlongo            #+#    #+#             */
-/*   Updated: 2023/05/10 19:30:53 by mlongo           ###   ########.fr       */
+/*   Updated: 2023/05/09 11:18:28 by mlongo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	game_over(void)
+void	game_over()
 {
-	ft_printf("GAME OVER\nhai perso il campionato");
+	printf("GAME OVER\nhai perso il campionato");
 	exit (1);
 }
 
-void	game_win(void)
+void	game_win()
 {
-	ft_printf("GAME WIN\nhai vinto il campionato");
+	printf("GAME WIN\nhai vinto il campionato");
 	exit (1);
 }
 
-void	update_player(t_data *data, int x, int y)
+void	update_playerup(t_data *data)
 {
-	data->map.direction = 1; //metti questa su tutti
-	if (x == -1)
-		data->img.p = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Palto.xpm",
-			&data->map.widhtblock, &data->map.heightblock);
-	if (x == 1)
-		data->img.p = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Pgiu.xpm",
-			&data->map.widhtblock, &data->map.heightblock);
-	if (y == -1)
-		data->img.p = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Psinistra.xpm",
-			&data->map.widhtblock, &data->map.heightblock);
-	if (y == 1)
-		data->img.p = mlx_xpm_file_to_image(data->mlx_ptr, "./images/P.xpm",
-			&data->map.widhtblock, &data->map.heightblock);
-	if (data->map.splitmap[data->map.rp + x][data->map.cp + y] == 'E')
+	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggioalto.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
+	if (data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] == 'E')
 	{
-		data->map.splitmap[data->map.rp + x][data->map.cp + y] = 'P';
-		data->map.splitmap[data->map.rp][data->map.cp] = '0';
-		data->map.mosse += 1;
-		ft_printf("MOSSE :%d\n", data->map.mosse);
-		if (data->map.c == 0)
+		data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] = 'P';
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
+		data->datamap.mosse += 1;
+		printf("MOSSE :%d\n", data->datamap.mosse);
+		if (data->datamap.C == 0)
 			game_win();
 	}
-	if (data->map.splitmap[data->map.rp + x][data->map.cp + y] == '0')
+	if (data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] == '0')
 	{
-		data->map.splitmap[data->map.rp + x][data->map.cp + y] = 'P';
-		data->map.splitmap[data->map.rp][data->map.cp] = '0';
-		data->map.mosse += 1;
-		ft_printf("MOSSE :%d\n", data->map.mosse);
+		data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] = 'P';
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
+		data->datamap.mosse += 1;
+		printf("MOSSE :%d\n", data->datamap.mosse);
 	}
-	if (data->map.splitmap[data->map.rp + x][data->map.cp + y] == 'C')
+	if (data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] == 'C')
 	{
-		data->map.splitmap[data->map.rp + x][data->map.cp + y] = 'P';
-		data->map.splitmap[data->map.rp][data->map.cp] = '0';
-		data->map.mosse += 1;
-		data->map.c -= 1;
-		ft_printf("MOSSE :%d\n", data->map.mosse);
-		mlx_string_put(data->mlx_ptr, data->win_ptr, 0, 0,
-			0xFFFFFF, "MOSSE : ");
+		data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] = 'P';
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
+		data->datamap.mosse += 1;
+		data->datamap.C -= 1;
+		printf("MOSSE :%d\n", data->datamap.mosse);
 	}
-	if (data->map.splitmap[data->map.rp - 1][data->map.cp] == 'N')
+	if (data->datamap.splitmap[data->datamap.ROWP - 1][data->datamap.COLUMNP] == 'N')
 	{
-		data->map.splitmap[data->map.rp][data->map.cp] = '0';
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
 		game_over();
 	}
 	create_map(data);
 }
 
-// void	update_playerdown(t_data *data)
-// {
-// 	data->map.direction = 2;
-// 	data->img.p = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Pgiu.xpm",
-// 			&data->map.widhtblock, &data->map.heightblock);
-// 	if (data->map.splitmap[data->map.rp + 1][data->map.cp] == 'E')
-// 	{
-// 		data->map.splitmap[data->map.rp + 1][data->map.cp] = 'P';
-// 		data->map.splitmap[data->map.rp][data->map.cp] = '0';
-// 		data->map.mosse += 1;
-// 		ft_printf("MOSSE :%d\n", data->map.mosse);
-// 		if (data->map.c == 0)
-// 			game_win();
-// 	}
-// 	if (data->map.splitmap[data->map.rp + 1][data->map.cp] == '0')
-// 	{
-// 		data->map.splitmap[data->map.rp + 1][data->map.cp] = 'P';
-// 		data->map.splitmap[data->map.rp][data->map.cp] = '0';
-// 		data->map.mosse += 1;
-// 		ft_printf("MOSSE :%d\n", data->map.mosse);
-// 	}
-// 	if (data->map.splitmap[data->map.rp + 1][data->map.cp] == 'C')
-// 	{
-// 		data->map.splitmap[data->map.rp + 1][data->map.cp] = 'P';
-// 		data->map.splitmap[data->map.rp][data->map.cp] = '0';
-// 		data->map.mosse += 1;
-// 		data->map.c -= 1;
-// 		ft_printf("MOSSE :%d\n", data->map.mosse);
-// 	}
-// 	if (data->map.splitmap[data->map.rp + 1][data->map.cp] == 'N')
-// 	{
-// 		data->map.splitmap[data->map.rp][data->map.cp] = '0';
-// 		game_over();
-// 	}
-// 	create_map(data);
-// }
+void	update_playerdown(t_data *data)
+{
+	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggiogiu.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
+	if (data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] == 'E')
+	{
+		data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] = 'P';
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
+		data->datamap.mosse += 1;
+		printf("MOSSE :%d\n", data->datamap.mosse);
+		if (data->datamap.C == 0)
+			game_win();
+	}
+	if (data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] == '0')
+	{
+		data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] = 'P';
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
+		data->datamap.mosse += 1;
+		printf("MOSSE :%d\n", data->datamap.mosse);
+	}
+	if (data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] == 'C')
+	{
+		data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] = 'P';
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
+		data->datamap.mosse += 1;
+		data->datamap.C -= 1;
+		printf("MOSSE :%d\n", data->datamap.mosse);
+	}
+	if (data->datamap.splitmap[data->datamap.ROWP + 1][data->datamap.COLUMNP] == 'N')
+	{
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
+		game_over();
+	}
+	create_map(data);
+}
 
-// void	update_playerright(t_data *data)
-// {
-// 	data->map.direction = 3;
-// 	data->img.p = mlx_xpm_file_to_image(data->mlx_ptr, "./images/P.xpm",
-// 			&data->map.widhtblock, &data->map.heightblock);
-// 	if (data->map.splitmap[data->map.rp][data->map.cp + 1] == 'E')
-// 	{
-// 		data->map.splitmap[data->map.rp][data->map.cp + 1] = 'P';
-// 		data->map.splitmap[data->map.rp][data->map.cp] = '0';
-// 		data->map.mosse += 1;
-// 		ft_printf("MOSSE :%d\n", data->map.mosse);
-// 		if (data->map.c == 0)
-// 			game_win();
-// 	}
-// 	if (data->map.splitmap[data->map.rp][data->map.cp + 1] == '0')
-// 	{
-// 		data->map.splitmap[data->map.rp][data->map.cp + 1] = 'P';
-// 		data->map.splitmap[data->map.rp][data->map.cp] = '0';
-// 		data->map.mosse += 1;
-// 		ft_printf("MOSSE :%d\n", data->map.mosse);
-// 	}
-// 	if (data->map.splitmap[data->map.rp][data->map.cp + 1] == 'C')
-// 	{
-// 		data->map.splitmap[data->map.rp][data->map.cp + 1] = 'P';
-// 		data->map.splitmap[data->map.rp][data->map.cp] = '0';
-// 		data->map.mosse += 1;
-// 		data->map.c -= 1;
-// 		ft_printf("MOSSE :%d\n", data->map.mosse);
-// 	}
-// 	if (data->map.splitmap[data->map.rp][data->map.cp + 1] == 'N')
-// 	{
-// 		data->map.splitmap[data->map.rp][data->map.cp] = '0';
-// 		game_over();
-// 	}
-// 	create_map(data);
-// }
+void	update_playerright(t_data *data)
+{
+	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggio.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
+	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] == 'E')
+	{
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] = 'P';
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
+		data->datamap.mosse += 1;
+		printf("MOSSE :%d\n", data->datamap.mosse);
+		if (data->datamap.C == 0)
+			game_win();
+	}
+	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] == '0')
+	{
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] = 'P';
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
+		data->datamap.mosse += 1;
+		printf("MOSSE :%d\n", data->datamap.mosse);
+	}
+	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] == 'C')
+	{
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] = 'P';
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
+		data->datamap.mosse += 1;
+		data->datamap.C -= 1;
+		printf("MOSSE :%d\n", data->datamap.mosse);
+	}
+	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP + 1] == 'N')
+	{
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
+		game_over();
+	}
+	create_map(data);
+}
 
-// void	update_playerleft(t_data *data)
-// {
-// 	data->map.direction = 4;
-// 	data->img.p = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Psinistra.xpm",
-// 			&data->map.widhtblock, &data->map.heightblock);
-// 	if (data->map.splitmap[data->map.rp][data->map.cp - 1] == 'E')
-// 	{
-// 		data->map.splitmap[data->map.rp][data->map.cp - 1] = 'P';
-// 		data->map.splitmap[data->map.rp][data->map.cp] = '0';
-// 		data->map.mosse += 1;
-// 		ft_printf("MOSSE :%d\n", data->map.mosse);
-// 		if (data->map.c == 0)
-// 			game_win();
-// 	}
-// 	if (data->map.splitmap[data->map.rp][data->map.cp - 1] == '0')
-// 	{
-// 		data->map.splitmap[data->map.rp][data->map.cp - 1] = 'P';
-// 		data->map.splitmap[data->map.rp][data->map.cp] = '0';
-// 		data->map.mosse += 1;
-// 		ft_printf("MOSSE :%d\n", data->map.mosse);
-// 	}
-// 	if (data->map.splitmap[data->map.rp][data->map.cp - 1] == 'C')
-// 	{
-// 		data->map.splitmap[data->map.rp][data->map.cp - 1] = 'P';
-// 		data->map.splitmap[data->map.rp][data->map.cp] = '0';
-// 		data->map.mosse += 1;
-// 		data->map.c -= 1;
-// 		ft_printf("MOSSE :%d\n", data->map.mosse);
-// 	}
-// 	if (data->map.splitmap[data->map.rp][data->map.cp - 1] == 'N')
-// 	{
-// 		data->map.splitmap[data->map.rp][data->map.cp] = '0';
-// 		game_over();
-// 	}
-// 	create_map(data);
-// }
+void	update_playerleft(t_data *data)
+{
+	data->img.P = mlx_xpm_file_to_image(data->mlx_ptr, "./images/Personaggiosinistra.xpm", &data->datamap.widhtblock, &data->datamap.heightblock);
+	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] == 'E')
+	{
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] = 'P';
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
+		data->datamap.mosse += 1;
+		printf("MOSSE :%d\n", data->datamap.mosse);
+		if (data->datamap.C == 0)
+			game_win();
+	}
+	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] == '0')
+	{
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] = 'P';
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
+		printf("MOSSE :%d\n", data->datamap.mosse);
+	}
+	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] == 'C')
+	{
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] = 'P';
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
+		data->datamap.mosse += 1;
+		data->datamap.C -= 1;
+		printf("MOSSE :%d\n", data->datamap.mosse);
+	}
+	if (data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP - 1] == 'N')
+	{
+		data->datamap.splitmap[data->datamap.ROWP][data->datamap.COLUMNP] = '0';
+		game_over();
+	}
+	create_map(data);
+}
